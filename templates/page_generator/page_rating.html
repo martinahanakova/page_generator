@@ -1,0 +1,36 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'page_generator/style.css' %}">
+
+<h2>Vyplňte prosím nasledujúci dotazník</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<h3>Keby mal tento článok skutočný obsah, ako veľmi by ste mu dôverovali na nasledovnej stupnici:</h3>
+
+{% for value, text in form.credibility.field.choices %}
+  {% if value == -3 %}
+    <label for="radio_{{ radio.index }}" align="">{{ text }}</label>
+  {% endif %}
+  <input name="credibility" type="radio" id="radio_{{ value }}" value={{ value }}>
+  {% if value == 3 %}
+    <label for="radio_{{ radio.index }}" align="">{{ text }}</label>
+  {% endif %}
+{% endfor %}
+
+<p>&nbsp;</p>
+
+<h3>Z nasledujúcich možností vyberte tie, ktoré najviac ovplyvnili vaše rozhodnutie v predchádzajúcej otázke.<br>
+  Vybrať môžete jednu alebo viac možností. Pokiaľ žiadna z možností neovplyvnila vaše rozhodnutie, nemusíte vybrať ani jednu.</h3>
+
+{% for field in form.visible_fields %}
+    {% if field.label != 'Dôveryhodnosť' and field.name != 'page' %}
+      <p>
+        {{ field }}
+        <label for="field.label">{{ field.label }}</label>
+      </p>
+    {% endif %}
+{% endfor %}
+
+<input type="submit" value="Odpovedať">

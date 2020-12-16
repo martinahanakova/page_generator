@@ -1,0 +1,15 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'page_generator/style.css' %}">
+
+<h1>Pre pokračovanie v experimente kliknine na odkaz nižšie</h1>
+
+<h2>Zobrazí sa vám dotazník. Prosím vyplňte tento dotazník</h2>
+
+{% if participants %}
+    {% for participant in participants %}
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfXlxtegjEVSWMXdJnUM1Iij2x5hCvRb1YjGvU3k3nFwRq0Q/viewform?usp=pp_url&entry.918932795={{participant.id}}">Vyplniť dotazník</a>
+    {% endfor %}
+{% else %}
+    <p>No such participant.</p>
+{% endif %}

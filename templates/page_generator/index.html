@@ -1,0 +1,11 @@
+{% load static %}
+
+<h1>Participants</h1>
+<h2>{{ request.session.participant }}</h2>
+<ul>
+{% for participant in object_list %}
+    <li>{{ participant.gender }} - {{ participant.age }}</li>
+{% empty %}
+    <li>No participants yet.</li>
+{% endfor %}
+</ul>

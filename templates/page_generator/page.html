@@ -1,0 +1,141 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'page_generator/style.css' %}">
+
+{% if pages %}
+    {% for page in pages %}
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body class="font_style_{{page.font_style}} color_{{page.colors}} font_size_{{page.font_size}} headline_size_{{page.headline_size}}">
+        <h1>{% lorem 6 w random %}</h1>
+
+        {% if page.image_count > 1 %}
+            <img src="../../static/page_generator/images/image_7.jpeg" width="200" height="300">
+        {% endif %}
+
+        <p>
+            {% lorem 3 random %}
+            {% if page.hyperlink_count > 2 %}
+                <a href="url">{% lorem 4 w random %}</a>
+            {%  endif %}
+        </p>
+        {% lorem 1 p random %}
+
+        {% if page.text_length > 1 %}
+            <p>
+                {% lorem 10 w random %}
+                {% if page.hyperlink_count > 1 %}
+                        <a href="url">{% lorem 3 w random %}</a>
+                        {% lorem 1 random %}
+                        <a href="url">{% lorem 5 w random %}</a>
+                {% endif %}
+                {% lorem 2 random %}
+            </p>
+            {% lorem 2 p random %}
+        {% endif %}
+
+        {% if page.text_length == 1  and page.hyperlink_count > 1 %}
+            <ul>
+                <li><a href="url">{% lorem 3 w random %}</a></li>
+                <li><a href="url">{% lorem 5 w random %}</a></li>
+            </ul>
+        {% endif %}
+
+        {% if page.image_count > 1 %}
+            <img src="../../static/page_generator/images/image_2.jpeg" width="200" height="300">
+        {% endif %}
+
+        {% if page.image_count > 2 %}
+            <img src="../../static/page_generator/images/image_3.jpeg" width="200" height="300">
+        {% endif %}
+
+        <p>
+            {% lorem 4 random %}
+            {% if page.hyperlink_count > 2 %}
+                <a href="url">{% lorem 4 w random %}</a>
+                {% lorem 5 w random %}
+            {% endif%}
+        </p>
+
+        {% if page.text_length > 1 %}
+            <p>
+                {% if page.hyperlink_count > 2 %}
+                    {% lorem 10 w random %}
+                    <a href="url">{% lorem 8 w random %}</a>
+                {% endif %}
+                {% lorem 2 random %}
+            </p>
+            <p>
+                {% lorem 3 random %}
+                {% if page.hyperlink_count > 2 %}
+                    <a href="url">{% lorem 10 w random %}</a>
+                    {% lorem 30 w random %}
+                {% endif %}
+            </p>
+        {% endif %}
+
+        {% if page.text_length == 1  and page.hyperlink_count > 2 %}
+            <ul>
+                <li>{% lorem 10 w random %}<a href="url">{% lorem 8 w random %}</a></li>
+                <li><a href="url">{% lorem 10 w random %}</a>{% lorem 30 w random %}</li>
+            </ul>
+        {% endif %}
+
+         {% if page.image_count > 1 %}
+            <img src="../../static/page_generator/images/image_4.jpeg" width="200" height="300">
+        {% endif %}
+
+        {% if page.text_length > 2 %}
+            <p>{% lorem 4 random %}</p>
+            {% lorem 1 p random %}
+            <p>
+                {% lorem 3 random %}
+                {% if page.hyperlink_count > 2 %}
+                    <a href="url">{% lorem 7 w random %}</a>
+                    {% lorem 7 w random %}
+                {% endif %}
+            </p>
+            <p>
+                {% lorem 3 random %}
+                {% if page.hyperlink_count > 1 %}
+                    <a href="url">{% lorem 5 w random %}</a>
+                    {% lorem 3 w random %}
+                {% endif %}
+            </p>
+            {% lorem 2 p random %}
+        {% endif %}
+
+        {% if page.text_length < 3  and page.hyperlink_count > 2 %}
+            <ul>
+                {% if page.hyperlink_count > 2 %}
+                    <li>
+                    <a href="url">{% lorem 7 w random %}</a>
+                    {% lorem 7 w random %}
+                    </li>
+                {% endif %}
+                {% if page.hyperlink_count > 1 %}
+                    <li>
+                    <a href="url">{% lorem 5 w random %}</a>
+                    {% lorem 3 w random %}
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+         {% if page.image_count > 2 %}
+            <img src="../../static/page_generator/images/image_5.jpeg" width="200" height="300">
+            <img src="../../static/page_generator/images/image_6.jpeg" width="200" height="300">
+        {% endif %}
+        </body>
+    {% endfor %}
+{% else %}
+    <p>No page available.</p>
+{% endif %}
+
+<script>
+  setTimeout(goToNextPage, 3000);
+  function goToNextPage() {
+  	location.href = "http://127.0.0.1:8000/page_generator/page_rating"
+  }
+</script>

@@ -1,0 +1,23 @@
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'page_generator/style.css' %}">
+
+<h1>Demografický dotazník</h1>
+
+<form method="post">
+{% csrf_token %}
+
+{% for field in form.visible_fields %}
+  {% if field.label != 'Session id' %}
+    <h2>{{ field.label }}</h2>
+      <p>
+      {% for radio in field %}
+        {{ radio }}
+        {% if field.name == 'student' %}<label for="student">Áno</label>{% endif %}
+        <br/>
+      {% endfor %}
+      </p>
+  {% endif %}
+{% endfor %}
+
+<input type="submit" value="Odpovedať">
